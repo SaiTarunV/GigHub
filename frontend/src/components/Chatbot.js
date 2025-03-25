@@ -120,7 +120,11 @@ const GigAI = () => {
       }
     } else {
       try {
-        const response = await fetch('http://localhost:5000/api/chat/message', {
+        const API_URL = process.env.NODE_ENV === 'production' 
+          ? 'https://gighub-backend.onrender.com'
+          : 'http://localhost:5000';
+
+        const response = await fetch(`${API_URL}/api/chat/message`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -156,7 +160,11 @@ const GigAI = () => {
 
   const initializeChat = async (skills) => {
     try {
-      const response = await fetch('http://localhost:5000/api/chat/initialize', {
+      const API_URL = process.env.NODE_ENV === 'production' 
+        ? 'https://gighub-backend.onrender.com'
+        : 'http://localhost:5000';
+
+      const response = await fetch(`${API_URL}/api/chat/initialize`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
